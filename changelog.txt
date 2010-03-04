@@ -1,0 +1,8 @@
+NEXT
+[+] Add method filterRemoved() for except finding removed models.
+[+] Add property $findRemoved to enable or disable find removed models.
+[+] Unit tests.
+[+] Add method withRemoved() for find removed models.
+
+0.1
+[+] Initial public release.
