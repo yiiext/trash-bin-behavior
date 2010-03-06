@@ -1,15 +1,15 @@
 <?php
 /**
- * CTrashBinBehavior class file.
+ * ETrashBinBehavior class file.
  *
  * Trash bin behavior for models.
  *
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
- * @link http://code.google.com/p/yiiext/source/browse/#svn/trunk/app/extensions/CTrashBinBehavior
+ * @link http://code.google.com/p/yiiext/source/browse/#svn/trunk/app/extensions/ETrashBinBehavior
  *
  * @version 0.1
  */
-class CTrashBinBehavior extends CActiveRecordBehavior {
+class ETrashBinBehavior extends CActiveRecordBehavior {
     /**
      * @var string The name of the table where data stored.
      * Required to set on init behavior. No defaults.
@@ -36,7 +36,7 @@ class CTrashBinBehavior extends CActiveRecordBehavior {
     public function attach($owner) {
         // Check required var trashFlagField
         if (!is_string($this->trashFlagField) || empty($this->trashFlagField)) {
-            throw new CException(Yii::t('CEAV', 'Required var "{class}.{property}" not set.',
+            throw new CException(Yii::t('yiiext', 'Required var "{class}.{property}" not set.',
                 array('{class}' => get_class($this), '{property}' => 'trashFlagField')));
         }
         parent::attach($owner);
@@ -102,7 +102,7 @@ class CTrashBinBehavior extends CActiveRecordBehavior {
         if ($this->getEnabled() && !$this->findRemoved && !$this->withRemoved) {
             $this->filterRemoved();
         }
-        !$this->withRemoved || $this->withRemoved = FALSE;
+        $this->withRemoved = FALSE;
         parent::beforeFind($event);
     }
     

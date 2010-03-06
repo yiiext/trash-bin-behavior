@@ -3,6 +3,8 @@ NEXT
 [+] Add property $findRemoved to enable or disable find removed models.
 [+] Unit tests.
 [+] Add method withRemoved() for find removed models.
+[*] Changed translation category to 'yiiext'.
+[*] New naming conventions.
 
 0.1
 [+] Initial public release.

@@ -16,7 +16,7 @@ CTrashBinBehavior
 function behaviors() {
     return array(
         'trash' => array(
-            'class' => 'ext.CTrashBinBehavior.CTrashBinBehavior',
+            'class' => 'ext.yiiext.behaviors.model.trashBin.ETrashBinBehavior',
             // Имя столбца где хранится статус удаления (обязательное свойство)
             'trashFlagField' => 'trash',
             // Значение которое устанавливается при удалении в поле $trashFlagField
