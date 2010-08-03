@@ -87,9 +87,13 @@ class ETrashBinBehavior extends CActiveRecordBehavior {
      * @return CActiveRecord
      */
     public function filterRemoved() {
+		d($this->getOwner()
+            ->getDbCriteria());
         $this->getOwner()
             ->getDbCriteria()
             ->addCondition($this->trashFlagField . ' != "' . $this->removedFlag . '"');
+		d($this->getOwner()
+            ->getDbCriteria());
         return $this->getOwner();
     }
 
@@ -99,11 +103,12 @@ class ETrashBinBehavior extends CActiveRecordBehavior {
      * @param CEvent
      */
     public function beforeFind(CEvent $event) {
+		d($event, 2);
         if ($this->getEnabled() && !$this->findRemoved && !$this->withRemoved) {
             $this->filterRemoved();
         }
         $this->withRemoved = FALSE;
-        parent::beforeFind($event);
+		parent::beforeFind($event);
     }
     
 }
