@@ -1,4 +1,7 @@
-NEXT
+Require framework version 1.1.4
+
+0.2
+[*] Change method isRemoved() to getIsRemoved()
 [+] Add method filterRemoved() for except finding removed models.
 [+] Add property $findRemoved to enable or disable find removed models.
 [+] Unit tests.

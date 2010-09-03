@@ -8,30 +8,32 @@ CTrashBinBehavior
 
 ### Подготовка модели
 В модели должен быть выделен атрибут для статуса удаления.
+Например: "isRemoved"
 
 ### Подключить поведение к модели
 
 ~~~
 [php]
-function behaviors() {
-    return array(
-        'trash' => array(
-            'class' => 'ext.yiiext.behaviors.model.trashBin.ETrashBinBehavior',
-            // Имя столбца где хранится статус удаления (обязательное свойство)
-            'trashFlagField' => 'trash',
-            // Значение которое устанавливается при удалении в поле $trashFlagField
-            // По умолчанию 1
-            'removedFlag' => '1',
-            // Значение которое устанавливается при восстановлении в поле $trashFlagField
-            // По умолчанию 0
-            'restoredFlag' => '0',
-        )
-    );
+function behaviors()
+{
+	return array(
+		'trash'=>array(
+			'class'=>'ext.yiiext.behaviors.model.trashBin.ETrashBinBehavior',
+			// Имя столбца где хранится статус удаления (обязательное свойство)
+			'trashFlagField'=>'isRemoved',
+			// Значение которое устанавливается при удалении в поле $trashFlagField
+			// По умолчанию 1
+			'removedFlag'=>1,
+			// Значение которое устанавливается при восстановлении в поле $trashFlagField
+			// По умолчанию 0
+			'restoredFlag'=>0,
+		),
+	);
 }
 ~~~
 
 ### Минимальные требования
-[Yii Framework 1.0.12](http://www.yiiframework.com/)
+[Yii Framework 1.1.4](http://www.yiiframework.com/)
 
 Методы
 ------
@@ -41,7 +43,7 @@ function behaviors() {
 
 ~~~
 [php]
-$user = User::model()->findByPk(1);
+$user=User::model()->findByPk(1);
 $user->remove();
 ~~~
 
@@ -50,41 +52,41 @@ $user->remove();
 
 ~~~
 [php]
-// Так как при поиске удаленные модели игнорируются,
-// нужно на время поиска выключить поведение
+// Так как при включенном поведении удаленные модели игнорируются,
+// нужно включить поиск удаленных моделей
+User::model()->withRemoved();
+// или на время поиска выключить поведение
 User::model()->disableBehavior('trash');
 
-$user = User::model()->findByPk(1);
+$user=User::model()->findByPk(1);
 $user->restore();
 
-
-// Включаем снова поведение.
+// Включаем снова поведение если выключали.
 User::model()->enableBehavior('trash');
 ~~~
 
-### isRemoved()
-Проверяем удалена ли модель.
+### getIsRemoved()
+Проверяем удалена ли модель в корзину.
 
 ~~~
 [php]
-User::model()->disableBehavior('trash');
-$users = User::model()->findAll();
-foreach ($users as $user) {
-  echo $user->isRemoved() ? 'status=removed' : 'status=normal';
+$user1=User::model()->withRemoved()->findByPk(1);
+echo $user1->getIsRemoved() ? 'status=removed' : 'status=normal';
+$user2=User::model()->withRemoved()->findByPk(2);
+echo $user2->isRemoved ? 'status=removed' : 'status=normal';
 }
-User::model()->enableBehavior('trash');
 ~~~
 
 ### withRemoved()
-Отключаем исключения удаленных записей из поиска.
+Включаем поиск удаленных записей только при следующем запросе.
 
 ~~~
 [php]
-$users = User::model()->withRemoved()->findAll();
+$users=User::model()->withRemoved()->findAll();
 ~~~
 
 Подсказка
 ---------
 При включенном поведении при поиске игнорируются модели со статусом удаления,
-поэтому если нужно найти модели включая модели из корзины, нужно выключить
-на время поиска поведение.
+поэтому если нужно найти модели включая модели из корзины, нужно включить поиск удаленных моделей
+или выключить на время поиска поведение.
