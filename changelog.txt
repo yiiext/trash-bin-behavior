@@ -1,6 +1,9 @@
-Require framework version 1.1.4
+0.3
+---
+- Doc corrections and English docs (Sam Dark)
 
 0.2
+---
 [*] Change method isRemoved() to getIsRemoved()
 [+] Add method filterRemoved() for except finding removed models.
 [+] Add property $findRemoved to enable or disable find removed models.
@@ -10,4 +13,5 @@ Require framework version 1.1.4
 [*] New naming conventions.
 
 0.1
+---
 [+] Initial public release.

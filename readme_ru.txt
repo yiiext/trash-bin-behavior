@@ -35,8 +35,8 @@ function behaviors()
 ### Минимальные требования
 [Yii Framework 1.1.4](http://www.yiiframework.com/)
 
-Методы
-------
+API
+---
 
 ### remove()
 Удаляем модель в корзину.
@@ -59,10 +59,11 @@ User::model()->withRemoved();
 User::model()->disableBehavior('trash');
 
 $user=User::model()->findByPk(1);
-$user->restore();
 
 // Включаем снова поведение если выключали.
 User::model()->enableBehavior('trash');
+
+$user->restore();
 ~~~
 
 ### getIsRemoved()
@@ -84,9 +85,3 @@ echo $user2->isRemoved ? 'status=removed' : 'status=normal';
 [php]
 $users=User::model()->withRemoved()->findAll();
 ~~~
-
-Подсказка
----------
-При включенном поведении при поиске игнорируются модели со статусом удаления,
-поэтому если нужно найти модели включая модели из корзины, нужно включить поиск удаленных моделей
-или выключить на время поиска поведение.
