@@ -1,4 +1,4 @@
-CTrashBinBehavior
+ETrashBinBehavior
 =================
 
 Adds an ability to mark model as deleted and restore it when needed.
