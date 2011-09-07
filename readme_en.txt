@@ -45,6 +45,7 @@ Mark model as deleted.
 [php]
 $user=User::model()->findByPk(1);
 $user->remove();
+$user->save();
 ~~~
 
 ### restore()
@@ -63,6 +64,7 @@ $user=User::model()->findByPk(1);
 User::model()->enableBehavior('trash');
 
 $user->restore();
+$user->save();
 ~~~
 
 ### getIsRemoved()
