@@ -8,7 +8,7 @@ Installing and configuring
 
 ### Preparing model
 
-There should be an attribute in the model to store deletion flag. For example, "isRemoved".
+There should be an attribute in the model to store deletion flag. For example, "is_removed".
 
 ### Attaching behavior
 
