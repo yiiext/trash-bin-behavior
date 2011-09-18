@@ -19,7 +19,7 @@ function behaviors()
 		'trash'=>array(
 			'class'=>'ext.yiiext.behaviors.model.trashBin.ETrashBinBehavior',
 			// Deletion flag table column name (required)
-			'trashFlagField'=>'isRemoved',
+			'trashFlagField'=>'is_removed',
 			// Value that is written to $trashFlagField when model is deleted
 			// Default is 1
 			'removedFlag'=>1,
