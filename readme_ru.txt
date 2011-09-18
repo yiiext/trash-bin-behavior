@@ -8,19 +8,18 @@ ETrashBinBehavior
 
 ### Подготовка модели
 В модели должен быть выделен атрибут для статуса удаления.
-Например: "isRemoved"
+Например: "is_removed"
 
 ### Подключить поведение к модели
 
 ~~~
-[php]
 function behaviors()
 {
 	return array(
 		'trash'=>array(
 			'class'=>'ext.yiiext.behaviors.model.trashBin.ETrashBinBehavior',
 			// Имя столбца где хранится статус удаления (обязательное свойство)
-			'trashFlagField'=>'isRemoved',
+			'trashFlagField'=>'is_removed',
 			// Значение которое устанавливается при удалении в поле $trashFlagField
 			// По умолчанию 1
 			'removedFlag'=>1,
@@ -42,7 +41,6 @@ API
 Удаляем модель в корзину.
 
 ~~~
-[php]
 $user=User::model()->findByPk(1);
 $user->remove();
 ~~~
@@ -51,7 +49,6 @@ $user->remove();
 Восстанавливаем модель из корзины.
 
 ~~~
-[php]
 // Так как при включенном поведении удаленные модели игнорируются,
 // нужно включить поиск удаленных моделей
 User::model()->withRemoved();
@@ -70,7 +67,6 @@ $user->restore();
 Проверяем удалена ли модель в корзину.
 
 ~~~
-[php]
 $user1=User::model()->withRemoved()->findByPk(1);
 echo $user1->getIsRemoved() ? 'status=removed' : 'status=normal';
 $user2=User::model()->withRemoved()->findByPk(2);
@@ -82,6 +78,5 @@ echo $user2->isRemoved ? 'status=removed' : 'status=normal';
 Включаем поиск удаленных записей только при следующем запросе.
 
 ~~~
-[php]
 $users=User::model()->withRemoved()->findAll();
 ~~~
