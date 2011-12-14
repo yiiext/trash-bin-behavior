@@ -12,7 +12,8 @@ There should be an attribute in the model to store deletion flag. For example, "
 
 ### Attaching behavior
 
-~~~
+~~~php
+<?php
 function behaviors()
 {
 	return array(
@@ -40,7 +41,8 @@ API
 ### remove()
 Mark model as deleted.
 
-~~~
+~~~php
+<?php
 $user=User::model()->findByPk(1);
 $user->remove();
 $user->save();
@@ -49,7 +51,8 @@ $user->save();
 ### restore()
 Restore deleted model.
 
-~~~
+~~~php
+<?php
 // Since deleted models are ignored by default we have to show all models:
 User::model()->withRemoved();
 // or just turn off behavior completely
@@ -67,17 +70,18 @@ $user->save();
 ### getIsRemoved()
 Tells if model is marked as deleted.
 
-~~~
+~~~php
+<?php
 $user1=User::model()->withRemoved()->findByPk(1);
 echo $user1->getIsRemoved() ? 'status=removed' : 'status=normal';
 $user2=User::model()->withRemoved()->findByPk(2);
 echo $user2->isRemoved ? 'status=removed' : 'status=normal';
-}
 ~~~
 
 ### withRemoved()
 Allows to search for deleted models.
 
-~~~
+~~~php
+<?php
 $users=User::model()->withRemoved()->findAll();
 ~~~
