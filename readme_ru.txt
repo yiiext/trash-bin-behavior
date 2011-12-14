@@ -12,7 +12,8 @@ ETrashBinBehavior
 
 ### Подключить поведение к модели
 
-~~~
+~~~php
+<?php
 function behaviors()
 {
 	return array(
@@ -40,7 +41,8 @@ API
 ### remove()
 Удаляем модель в корзину.
 
-~~~
+~~~php
+<?php
 $user=User::model()->findByPk(1);
 $user->remove();
 ~~~
@@ -48,7 +50,8 @@ $user->remove();
 ### restore()
 Восстанавливаем модель из корзины.
 
-~~~
+~~~php
+<?php
 // Так как при включенном поведении удаленные модели игнорируются,
 // нужно включить поиск удаленных моделей
 User::model()->withRemoved();
@@ -66,7 +69,8 @@ $user->restore();
 ### getIsRemoved()
 Проверяем удалена ли модель в корзину.
 
-~~~
+~~~php
+<?php
 $user1=User::model()->withRemoved()->findByPk(1);
 echo $user1->getIsRemoved() ? 'status=removed' : 'status=normal';
 $user2=User::model()->withRemoved()->findByPk(2);
@@ -77,6 +81,7 @@ echo $user2->isRemoved ? 'status=removed' : 'status=normal';
 ### withRemoved()
 Включаем поиск удаленных записей только при следующем запросе.
 
-~~~
+~~~php
+<?php
 $users=User::model()->withRemoved()->findAll();
 ~~~
