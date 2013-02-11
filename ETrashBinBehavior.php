@@ -11,7 +11,7 @@
  * ETrashBinBehavior allows you to remove the model in the trash bin and restore them when need.
  *
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
- * @version 0.2
+ * @version 0.3
  * @package yiiext.behaviors.model.trashBin
  * @since 1.1.4
  */
@@ -115,7 +115,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 		$owner=$this->getOwner();
 		$criteria=$owner->getDbCriteria();
 		
-		$criteria->addCondition($this->trashFlagField.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
+		$criteria->addCondition($owner->getTableAlias().'.'.$this->trashFlagField.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
 		$criteria->params[CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount++]=$this->removedFlag;
 
 		return $owner;
