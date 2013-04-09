@@ -129,7 +129,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 *
 	 * @param CEvent
 	 */
-	public function beforeFind(CEvent $event)
+	public function beforeFind($event)
 	{
 		if($this->getEnabled() && !$this->findRemoved && !$this->_withRemoved)
 			$this->filterRemoved();
