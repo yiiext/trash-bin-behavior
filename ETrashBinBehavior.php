@@ -25,7 +25,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 * Required to set on init behavior.
 	 * No defaults. Example: "isRemoved".
 	 */
-	public $trashFlagField;
+	public $trashFlagField = 'removed';
 	/**
 	 * @var mixed The value to set for removed model.
 	 * Default is 1.
@@ -45,18 +45,6 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 * @var bool The flag to disable filter removed models in the next query.
 	 */
 	protected $_withRemoved=false;
-
-	public function attach($owner)
-	{
-		// Check required var trashFlagField
-		if(!is_string($this->trashFlagField) || empty($this->trashFlagField))
-		{
-			throw new CException(Yii::t('yiiext','Required var "{class}.{property}" not set.',
-				array('{class}'=>get_class($this),'{property}'=>'trashFlagField')));
-		}
-
-		parent::attach($owner);
-	}
 
 	/**
 	 * Set value for trash field.
