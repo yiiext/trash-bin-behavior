@@ -22,8 +22,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 {
 	/**
 	 * @var string The name of the table where data stored.
-	 * Required to set on init behavior.
-	 * No defaults. Example: "isRemoved".
+	 * Defaults to "removed".
 	 */
 	public $trashFlagField = 'removed';
 	/**
