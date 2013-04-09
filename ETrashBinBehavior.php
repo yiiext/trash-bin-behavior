@@ -54,7 +54,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	public function setTrashFlag($value)
 	{
 		$owner=$this->getOwner();
-		$owner->{$this->trashFlagField}=$value==$this->removedFlag?$this->removedFlag:$this->restoredFlag;
+		$owner->setAttribute($this->trashFlagField, $value==$this->removedFlag?$this->removedFlag:$this->restoredFlag);
 		
 		return $owner;
 	}
@@ -83,7 +83,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 */
 	public function getIsRemoved()
 	{
-		return $this->getOwner()->{$this->trashFlagField}==$this->removedFlag;
+		return $this->getOwner()->getAttribute($this->trashFlagField)==$this->removedFlag;
 	}
 	/**
 	 * Disable excepting removed models for next search.
