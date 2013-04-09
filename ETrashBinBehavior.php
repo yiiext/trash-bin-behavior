@@ -118,10 +118,9 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 */
 	public function beforeFind($event)
 	{
-		if($this->getEnabled() && !$this->findRemoved && !$this->_withRemoved)
+		if(!$this->findRemoved && !$this->_withRemoved)
 			$this->filterRemoved();
 
 		$this->_withRemoved=false;
-		parent::beforeFind($event);
 	}
 }
