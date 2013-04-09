@@ -10,6 +10,9 @@
 /**
  * ETrashBinBehavior allows you to remove the model in the trash bin and restore them when need.
  *
+ * @property CActiveRecord $owner
+ * @method CActiveRecord getOwner()
+ *
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
  * @version 0.3
  * @package yiiext.behaviors.model.trashBin
@@ -39,7 +42,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 */
 	public $findRemoved=false;
 	/**
-	 * @param bool The flag to disable filter removed models in the next query.
+	 * @var bool The flag to disable filter removed models in the next query.
 	 */
 	protected $_withRemoved=false;
 
@@ -54,10 +57,11 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 
 		parent::attach($owner);
 	}
+
 	/**
 	 * Set value for trash field.
 	 *
-	 * @param mixed Value for trash field.   
+	 * @param mixed $value
 	 * @return CActiveRecord
 	 */
 	public function setTrashFlag($value)
