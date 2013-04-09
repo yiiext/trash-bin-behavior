@@ -54,7 +54,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	public function setTrashFlag($value)
 	{
 		$owner=$this->getOwner();
-		$owner->{$this->trashFlagField}=$value;
+		$owner->{$this->trashFlagField}=$value==$this->removedFlag?$this->removedFlag:$this->restoredFlag;
 		
 		return $owner;
 	}
