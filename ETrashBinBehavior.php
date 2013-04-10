@@ -14,7 +14,7 @@
  * @method CActiveRecord getOwner()
  *
  * @author Veaceslav Medvedev <slavcopost@gmail.com>
- * @version 0.3
+ * @version 0.4
  * @package yiiext.behaviors.model.trashBin
  * @since 1.1.4
  */

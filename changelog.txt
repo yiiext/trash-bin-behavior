@@ -1,17 +1,24 @@
+0.4
+---
+- Attach beforeFind event only if necessary. (slavcodev)
+- Add unit tests. (slavcodev)
+- Quote filter column. (slavcodev)
+- The attribute allow strict value, $removedFlag or $restoredFlag value. (slavcodev)
+- Add defaults to $trashFlagField. (slavcodev)
+
 0.3
 ---
-- Doc corrections and English docs (Sam Dark)
+- Doc corrections and English docs. (Sam Dark)
 
 0.2
 ---
-[*] Change method isRemoved() to getIsRemoved()
-[+] Add method filterRemoved() for except finding removed models.
-[+] Add property $findRemoved to enable or disable find removed models.
-[+] Unit tests.
-[+] Add method withRemoved() for find removed models.
-[*] Changed translation category to 'yiiext'.
-[*] New naming conventions.
+- Change method isRemoved() to getIsRemoved() (slavcodev)
+- Add method filterRemoved() for except finding removed models. (slavcodev)
+- Add property $findRemoved to enable or disable find removed models. (slavcodev)
+- Add method withRemoved() for find removed models. (slavcodev)
+- Changed translation category to 'yiiext'. (slavcodev)
+- New naming conventions. (slavcodev)
 
 0.1
 ---
-[+] Initial public release.
+Initial public release. (slavcodev)
