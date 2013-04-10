@@ -105,8 +105,8 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	{
 		$owner=$this->getOwner();
 		$criteria=$owner->getDbCriteria();
-		
-		$criteria->addCondition($owner->getTableAlias().'.'.$this->trashFlagField.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
+		$column = $owner->getDbConnection()->quoteColumnName($owner->getTableAlias().'.'.$this->trashFlagField);
+		$criteria->addCondition($column.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
 		$criteria->params[CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount++]=$this->removedFlag;
 
 		return $owner;
