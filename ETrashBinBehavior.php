@@ -45,6 +45,15 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 */
 	protected $_withRemoved=false;
 
+	public function events()
+	{
+		$events = array();
+		if (!$this->findRemoved) {
+			$events['onBeforeFind'] = 'beforeFind';
+		}
+		return $events;
+	}
+
 	/**
 	 * Set value for trash field.
 	 *
@@ -104,11 +113,13 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	public function filterRemoved()
 	{
 		$owner=$this->getOwner();
-		$criteria=$owner->getDbCriteria();
-		$column = $owner->getDbConnection()->quoteColumnName($owner->getTableAlias().'.'.$this->trashFlagField);
-		$criteria->addCondition($column.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
-		$criteria->params[CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount++]=$this->removedFlag;
-
+		if(!$this->_withRemoved) {
+			$criteria=$owner->getDbCriteria();
+			$column = $owner->getDbConnection()->quoteColumnName($owner->getTableAlias().'.'.$this->trashFlagField);
+			$criteria->addCondition($column.'!='.CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount);
+			$criteria->params[CDbCriteria::PARAM_PREFIX.CDbCriteria::$paramCount++]=$this->removedFlag;
+		}
+		$this->_withRemoved=false;
 		return $owner;
 	}
 	/**
@@ -118,9 +129,6 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 */
 	public function beforeFind($event)
 	{
-		if(!$this->findRemoved && !$this->_withRemoved)
-			$this->filterRemoved();
-
-		$this->_withRemoved=false;
+		$this->filterRemoved();
 	}
 }
