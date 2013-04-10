@@ -24,6 +24,7 @@
  * @method \TestPost withRemoved()
  *
  * Core
+ * @method \TestPost with()
  * @method \TestPost find()
  * @method \TestPost findByPk()
  *
@@ -67,5 +68,11 @@ class TestPost extends CActiveRecord
 		return array(
 			array('title', 'required'),
 		);
+	}
+
+	public function filterByUser($user_id)
+	{
+		$this->dbCriteria->compare('user_id', $user_id);
+		return $this;
 	}
 }
