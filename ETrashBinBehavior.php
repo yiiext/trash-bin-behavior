@@ -50,6 +50,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 		$events = array();
 		if (!$this->findRemoved) {
 			$events['onBeforeFind'] = 'beforeFind';
+			$events['onBeforeCount'] = 'beforeCount';
 		}
 		return $events;
 	}
@@ -128,6 +129,16 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	 * @param CEvent
 	 */
 	public function beforeFind($event)
+	{
+		$this->filterRemoved();
+	}
+	/**
+	 * Add condition before count, for except removed models.
+	 *
+	 * @param CEvent
+	 * @since 1.1.14
+	 */
+	public function beforeCount($event)
 	{
 		$this->filterRemoved();
 	}
