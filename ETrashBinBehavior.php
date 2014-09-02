@@ -50,6 +50,7 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 		$events = array();
 		if (!$this->findRemoved) {
 			$events['onBeforeFind'] = 'beforeFind';
+			$events['onBeforeCount'] = 'beforeCount';
 		}
 		return $events;
 	}
