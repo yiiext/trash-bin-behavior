@@ -131,4 +131,14 @@ class ETrashBinBehavior extends CActiveRecordBehavior
 	{
 		$this->filterRemoved();
 	}
+	/**
+	 * Add condition before count, for except removed models.
+	 *
+	 * @param CEvent
+	 * @since 1.1.14
+	 */
+	public function beforeCount($event)
+	{
+		$this->filterRemoved();
+	}
 }
